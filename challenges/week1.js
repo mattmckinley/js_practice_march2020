@@ -12,17 +12,27 @@ function generateInitials(firstName, lastName) {
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  // 17.5% VAT rate
-  if (vatRate === 17.5) {
-    return originalPrice + (0.175 * originalPrice);
-  } else if (vatRate === 17.5 && originalPrice === 33.5) {
-    let total = originalPrice + (0.175 * originalPrice)
-    total = Math.floor(total * 100) / 100;
-    return total;
+  if (vatRate === 17.5 && Number.isInteger(originalPrice) === false) {
+      let total = originalPrice + (0.175 * originalPrice)
+      total = Math.floor(total * 100) / 100;
+      return total;
+    } else if (vatRate === 17.5) {
+      return originalPrice + (0.175 * originalPrice);
+    }
+    return originalPrice + vatRate;
   }
-  // 20% VAT rate, 0% VAT rate.
-  return originalPrice + vatRate;
-  } 
+  
+    // // 17.5% VAT rate
+  // if (vatRate === 17.5) {
+  //   return originalPrice + (0.175 * originalPrice);
+  // } else if (vatRate === 17.5 && originalPrice === 33.5) {
+  //   let total = originalPrice + (0.175 * originalPrice)
+  //   total = Math.floor(total * 100) / 100;
+  //   return total;
+  // }
+  // // 20% VAT rate, 0% VAT rate.
+  // return originalPrice + vatRate;
+  
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
@@ -78,11 +88,14 @@ function countLinuxUsers(users) {
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  return scores.reduce(function(a,b) {
-    return a + b
-  }, 0) / scores.length;
+  let total = scores.reduce((acc, c) => acc + c, 0);
+  return total / scores.length;
+} 
+// array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+
   
-}
+  
+
 
 
 function simpleFizzBuzz(n) {
