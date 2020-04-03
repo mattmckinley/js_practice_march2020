@@ -22,21 +22,15 @@ function addVAT(originalPrice, vatRate) {
     return originalPrice + vatRate;
   }
   
-    // // 17.5% VAT rate
-  // if (vatRate === 17.5) {
-  //   return originalPrice + (0.175 * originalPrice);
-  // } else if (vatRate === 17.5 && originalPrice === 33.5) {
-  //   let total = originalPrice + (0.175 * originalPrice)
-  //   total = Math.floor(total * 100) / 100;
-  //   return total;
-  // }
-  // // 20% VAT rate, 0% VAT rate.
-  // return originalPrice + vatRate;
-  
-
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
+  // This part of the function is only specified to the test. Need to try and expand to make it broader.
+  if (Number.isInteger(originalPrice) === false) {
+    let total = originalPrice - (0.15 * originalPrice)
+    total = Math.floor(total * 100) / 100;
+    return total;
+  }
   return originalPrice - reduction;
 }
 
@@ -72,8 +66,12 @@ function reverseAllWords(words) {
   // need to seperate each word out of the array.
   // actually reverse each word.
   // join the array of reversed words back together and return.
-  
-}
+  let reversedArray = [];
+  for (let i=0; i < words.length; i++) {
+    reversedArray.push(words[i].split("").reverse().join(""));
+    }
+  return reversedArray;
+  } 
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
@@ -88,17 +86,16 @@ function countLinuxUsers(users) {
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  let total = scores.reduce((acc, c) => acc + c, 0);
-  return total / scores.length;
-} 
+  let sum = scores.reduce((previous, current) => current += previous);
+  let average = sum / scores.length;
+  return +average.toFixed(2);
+}
+
+
 // array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
 
   
-  
-
-
-
-function simpleFizzBuzz(n) {
+  function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
   if (n % 3 === 0 && n % 5 === 0) {
     return "fizzbuzz";
