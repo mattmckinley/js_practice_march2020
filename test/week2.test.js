@@ -42,6 +42,15 @@ describe("isFromManchester", () => {
     };
     expect(isFromManchester(person)).toBe(false);
   });
+  // checking if the test works without city name capitalisation.
+  test("returns true if the person is from Manchester, ignoring capital", () => {
+    const person = {
+      name: "Mohammed",
+      city: "manchester",
+      age: 23
+    };
+    expect(isFromManchester(person)).toBe(true);
+  });
 });
 
 describe("getBusNumbers", () => {
@@ -70,6 +79,10 @@ describe("getBusNumbers", () => {
 
   test("returns the correct number of buses for larger numbers of people", () => {
     expect(getBusNumbers(43728)).toBe(1094);
+  });
+  // Checking large numbers with decimal place.
+  test("returns the correct number of buses for larger numbers of people with decimal place", () => {
+    expect(getBusNumbers(48151623.4)).toBe(1203791);
   });
 });
 

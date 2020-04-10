@@ -5,6 +5,7 @@ function getFillings(sandwich) {
 
 function isFromManchester(person) {
   if (person === undefined) throw new Error("person is required");
+  person.city = person.city.charAt(0).toUpperCase() + person.city.slice(1);
   if (person.city === "Manchester") {
     return true;
   } else {
@@ -14,19 +15,15 @@ function isFromManchester(person) {
 
 function getBusNumbers(people) {
   if (people === undefined) throw new Error("people is required");
- if (people <= 120 && people > 80) {
-   return 3;
- } else if (people <= 80 && people > 40) {
-   return 2;
- } else 
- return 1;
+  let busesNeeded = people / 40;
+  return Math.ceil(busesNeeded);
 }
-// need to add last test! and refine down. can make this work for all tests somehow.
+
 
 function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
   let count = 0;
-  for (let i=0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] == "sheep") {
       count++;
     }
