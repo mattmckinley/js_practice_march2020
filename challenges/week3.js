@@ -26,41 +26,47 @@ function camelCaseWords(words) {
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // array of objects with array properties.
-  // need to set up a count
-  // loop through the object, access the subject property which is an array
-  // count how many items are in the array
-  // return the total count of all subjects in the array.
-
+  let count = 0;
+  people.forEach((person) => {
+    if (person["subjects"]) {
+      count += person["subjects"].length
+    }
+  });
+  return count;
 }
 
 function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // convert the array of objects to an object.
-  let object = {};
-  for (let i = 0; i < menu.length; ++i)
-    Object.assign(object, menu[i]);
-  return object;
-  // compare the ingredients
+  let found = false;
+  for (let i = 0; i < menu.length; i++) {
+    if (menu[i]["ingredients"].includes(ingredient)) {
+      found = true;
+    }
+  }
+  return found;
 }
 
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  
-  //combine the arrays
-  let unique = arr1.concat(arr2)
 
-  // create a new array with only the unique items
-  unique = unique.map((item, i) => unique.includes(item, i + 1) ? item : '')
+  // sort the arrays to remove duplicates
+  let sortedArr1 = [...new Set(arr1)]
+  let sortedArr2 = [...new Set(arr2)]
+
+  //combine the arrays
+  let combined = sortedArr1.concat(sortedArr2)
+
+  // map through the array and find duplicates
+  combined = combined.map((item, i) => combined.includes(item, i + 1) ? item : '')
 
   // sort the array
-  unique = [...new Set(unique)].filter(n => n).sort();
-  return unique;
-
-
+  combined = [...new Set(combined)].filter(n => n).sort();
+  return combined;
 }
+
+
 
 module.exports = {
   getSquares,
