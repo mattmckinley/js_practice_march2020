@@ -23,6 +23,8 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (typeof str !== "string") throw new Error("str is required");
+  return !/[^AGCT]/gi.test(str);
 };
 
 /**
@@ -40,7 +42,7 @@ const getComplementaryDNA = str => {
  * @returns {Boolean}
  */
 const isItPrime = n => {
-  if (n === undefined) throw new Error("n is required");
+  if (n === undefined) throw new Error("number is required");
 };
 
 /**

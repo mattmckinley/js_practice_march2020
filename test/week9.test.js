@@ -1,5 +1,8 @@
 const {
     sumMultiples,
+    isValidDNA,
+    getComplementaryDNA,
+    isItPrime,
     areWeCovered,
     createMatrix
 } = require("../challenges/week9");
@@ -25,6 +28,53 @@ describe("sumMultiples", () => {
     });
     test("return 0 if there are no multiples of 3 or 5", () => {
         expect(sumMultiples([1, 2, 8, 13, 7])).toBe(0);
+    });
+});
+
+describe("isValidDNA", () => {
+    test("throws an error if passed empty argument", () => {
+        expect(() => {
+            isValidDNA();
+        }).toThrow("str is required");
+    });
+    test("throws an error if anything but string is passed", () => {
+        expect(() => {
+            isValidDNA(123);
+        }).toThrow("str is required");
+        expect(() => {
+            isValidDNA(["A", "B", "C"]);
+        }).toThrow("str is required");
+    });
+    test("returns true if it is a valid DNA string", () => {
+        expect(isValidDNA("CGTA")).toBe(true);
+    });
+    test("returns false if it's not a valid DNA string", () => {
+        expect(isValidDNA("WXYZ")).toBe(false);
+    });
+    test("returns true with lowercase", () => {
+        expect(isValidDNA("CgtA")).toBe(true);
+    });
+    test("returns false with lowercase", () => {
+        expect(isValidDNA("wXYz")).toBe(false);
+    });
+    test("returns false with DNA characters mixed in", () => {
+        expect(isValidDNA("CZ34gHptSbtA")).toBe(false);
+    });
+});
+
+describe("getComplementaryDNA", () => {
+    test("if throws an error if passed empty argument ", () => {
+        expect(() => {
+            getComplementaryDNA();
+        }).toThrow("str is required");
+    });
+});
+
+describe("isItPrime", () => {
+    test("if throws an error if passed empty argument ", () => {
+        expect(() => {
+            isItPrime();
+        }).toThrow("number is required");
     });
 });
 
