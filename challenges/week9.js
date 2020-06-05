@@ -35,8 +35,8 @@ const isValidDNA = str => {
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
   // Use the previous function to check for valid DNA string
-  // declare empty array for return (need to .join to convert back to array)
-  // if valid, loop through and push each complementary letter to empty string
+  // declare empty array for return (need to .join to convert back to string)
+  // if valid, loop through and push each complementary letter to empty compStr
   if (!isValidDNA(str)) throw new Error("Valid DNA string required");
   let compStr = [];
   if (isValidDNA(str)) {
@@ -51,7 +51,7 @@ const getComplementaryDNA = str => {
         compStr.push("C");
       }
     }
-  } 
+  }
   return compStr.join("");
 };
 
@@ -62,6 +62,20 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("number is required");
+  if (typeof n !== "number") throw new Error("number is required");
+  if (n === 1) {
+    return false;
+  }
+  else if (n === 2) {
+    return true;
+  } else {
+    for (let x = 2; x < n; x++) {
+      if (n % x === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
 };
 
 /**

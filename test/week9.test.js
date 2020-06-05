@@ -87,10 +87,22 @@ describe("getComplementaryDNA", () => {
 });
 
 describe("isItPrime", () => {
-    test("if throws an error if passed empty argument ", () => {
+    test.only("if throws an error if passed empty argument", () => {
         expect(() => {
             isItPrime();
         }).toThrow("number is required");
+    });
+    test.only("if throws an error if not a number", () => {
+        expect(() => {
+            isItPrime("String");
+        }).toThrow("number is required");
+    });
+    test.only("returns true if the number is prime", () => {
+        expect(isItPrime(7)).toBe(true);
+        expect(isItPrime(11)).toBe(true);
+    });
+    test.only("returns false if the number is not prime", () => {
+        expect(isItPrime(12)).toBe(false);
     });
 });
 
