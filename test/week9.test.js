@@ -40,10 +40,10 @@ describe("isValidDNA", () => {
     test("throws an error if anything but string is passed", () => {
         expect(() => {
             isValidDNA(123);
-        }).toThrow("str is required");
+        }).toThrow("Valid DNA string required");
         expect(() => {
             isValidDNA(["A", "B", "C"]);
-        }).toThrow("str is required");
+        }).toThrow("Valid DNA string required");
     });
     test("returns true if it is a valid DNA string", () => {
         expect(isValidDNA("CGTA")).toBe(true);
@@ -63,10 +63,26 @@ describe("isValidDNA", () => {
 });
 
 describe("getComplementaryDNA", () => {
-    test("if throws an error if passed empty argument ", () => {
+    test("it throws an error if passed empty argument ", () => {
         expect(() => {
             getComplementaryDNA();
         }).toThrow("str is required");
+    });
+    test("it throws an error if passed invalid DNA string", () => {
+        expect(() => {
+            getComplementaryDNA(12345);
+        }).toThrow("Valid DNA string required");
+    });
+    test("it throws an error if passed invalid DNA string", () => {
+        expect(() => {
+            getComplementaryDNA("WXYZ12334566XYZ");
+        }).toThrow("Valid DNA string required");
+    });
+    test("returns a string of the complementary base pairs for valid DNA string", () => {
+        expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+    });
+    test("returns a string of the complementary base pairs for valid DNA string if passed lowercase", () => {
+        expect(getComplementaryDNA("AcTg")).toBe("TGAC");
     });
 });
 

@@ -23,7 +23,7 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  if (typeof str !== "string") throw new Error("str is required");
+  if (typeof str !== "string") throw new Error("Valid DNA string required");
   return !/[^AGCT]/gi.test(str);
 };
 
@@ -34,6 +34,25 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  // Use the previous function to check for valid DNA string
+  // declare empty array for return (need to .join to convert back to array)
+  // if valid, loop through and push each complementary letter to empty string
+  if (!isValidDNA(str)) throw new Error("Valid DNA string required");
+  let compStr = [];
+  if (isValidDNA(str)) {
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === "A" || str[i] === "a") {
+        compStr.push("T");
+      } else if (str[i] === "C" || str[i] === "c") {
+        compStr.push("G");
+      } else if (str[i] === "T" || str[i] === "t") {
+        compStr.push("A");
+      } else if (str[i] === "G" || str[i] === "g") {
+        compStr.push("C");
+      }
+    }
+  } 
+  return compStr.join("");
 };
 
 /**
