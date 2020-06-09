@@ -72,7 +72,9 @@ const isItPrime = n => {
 };
 
 /**
- * This function should receive a number and return an array of n arrays, each filled with n items. The parameter "fill" should be used as the filler of the arrays. For example, given parameters 3 and "foo" the resulting matrix should be:
+ * This function should receive a number and return an array of n arrays, 
+ * each filled with n items. The parameter "fill" should be used as the filler of the arrays. 
+ * For example, given parameters 3 and "foo" the resulting matrix should be:
  * [
  *   ["foo", "foo", "foo"],
  *   ["foo", "foo", "foo"],
@@ -85,6 +87,17 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  // need to add fill param into an empty array. push()? needs to total amount of n param. eg n=3 to be [["fill", "fill", "fill"]]
+  // then need to add that array to another array for total amount of n. eg (see above)
+  let firstArr = [];
+  let secondArr = [];
+  for (let i = 0; i < n; i++) {
+    firstArr.push(fill);
+  }
+  for (let j = 0; j < n; j++) {
+    secondArr.push(firstArr);
+  }
+  return secondArr;
 };
 
 /**

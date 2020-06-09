@@ -87,29 +87,49 @@ describe("getComplementaryDNA", () => {
 });
 
 describe("isItPrime", () => {
-    test.only("if throws an error if passed empty argument", () => {
+    test("if throws an error if passed empty argument", () => {
         expect(() => {
             isItPrime();
         }).toThrow("number is required");
     });
-    test.only("if throws an error if not a number", () => {
+    test("if throws an error if not a number", () => {
         expect(() => {
             isItPrime("String");
         }).toThrow("number is required");
     });
-    test.only("returns true if the number is prime", () => {
+    test("returns true if the number is prime", () => {
         expect(isItPrime(7)).toBe(true);
         expect(isItPrime(11)).toBe(true);
     });
-    test.only("returns false if the number is not prime", () => {
+    test("returns false if the number is not prime", () => {
         expect(isItPrime(12)).toBe(false);
     });
 });
 
 describe("createMatrix", () => {
     it("returns a matrix of 1 * 1 when passed 1", () => {
-        const result = createMatrix(1);
+        const result = createMatrix(1, "foo");
         const expected = [["foo"]];
+        expect(result).toEqual(expected);
+    });
+    it("returns a matrix of 5 * 5 when passed 5, and fill = number", () => {
+        const result = createMatrix(5, 5);
+        const expected = [
+            [5, 5, 5, 5, 5],
+            [5, 5, 5, 5, 5],
+            [5, 5, 5, 5, 5],
+            [5, 5, 5, 5, 5],
+            [5, 5, 5, 5, 5]
+        ];
+        expect(result).toEqual(expected);
+    });
+    it("returns a matrix of 3 * 3 when passed 3 and and array", () => {
+        const result = createMatrix(3, [1, 2, 3]);
+        const expected = [
+            [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
+            [[1, 2, 3], [1, 2, 3], [1, 2, 3]],
+            [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+        ];
         expect(result).toEqual(expected);
     });
 });
