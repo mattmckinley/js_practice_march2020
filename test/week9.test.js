@@ -3,8 +3,8 @@ const {
     isValidDNA,
     getComplementaryDNA,
     isItPrime,
-    areWeCovered,
-    createMatrix
+    createMatrix,
+    areWeCovered
 } = require("../challenges/week9");
 
 describe("sumMultiples", () => {
@@ -152,5 +152,14 @@ describe("areWeCovered", () => {
             { name: "jess", rota: ["Monday", "Tuesday"] },
         ];
         expect(areWeCovered(staff, "Wednesday")).toBe(false);
+    });
+    test("returns true if there are staff and > 3 are sheduled to work", () => {
+        const staff = [
+            { name: "gary", rota: ["Monday", "Wednesday"] },
+            { name: "paul", rota: ["Monday", "Tuesday", "Wednesday"] },
+            { name: "sally", rota: ["Monday", "Tuesday"] },
+            { name: "jess", rota: ["Tuesday", "Wednesday"] },
+        ];
+        expect(areWeCovered(staff, "Wednesday")).toBe(true);
     });
 });
