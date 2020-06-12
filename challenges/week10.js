@@ -4,6 +4,13 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  if (!Number.isInteger(n)) throw new Error("n must be number");
+  let nToStr = n.toString();
+  let sum = 0;
+  for (let i = 0; i < nToStr.length; i++) {
+    sum += parseInt(nToStr.charAt(i), 10);
+  }
+  return sum;
 };
 
 /**
@@ -67,6 +74,11 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if (hexStr.charAt(0) !== "#") throw new Error("# Hash needed at start of hexStr");
+  let red = parseInt(hexStr.slice(1, 3), 16);
+  let green = parseInt(hexStr.slice(3, 5), 16);
+  let blue = parseInt(hexStr.slice(5, 7), 16);
+  return `rgb(${red},${green},${blue})`
 };
 
 /**
