@@ -27,7 +27,7 @@ const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
   if (step === undefined) { step = 1; }
-  
+
   let rangeArr = [];
   for (let i = start; i <= end; i += step) {
     rangeArr.push(i);
@@ -69,6 +69,20 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  // set empty array
+  // loop through the object and another loop through screenTime array
+  // match up the date param with the one in the array
+  // if date match && over 100 minutes, push to empty array.
+  let over100 = [];
+  for (let i = 0; i < users.length; i++) {
+    for (let j = 0; j < users[i].screenTime.length; j++) {
+      let usageMins = Object.values(users[i].screenTime[j].usage);
+      if (users[i].screenTime[j].date == date && usageMins.reduce((a, b) => a + b) > 100) {
+        over100.push(users[i].username);
+      }
+    }
+  }
+  return over100;
 };
 
 /**
