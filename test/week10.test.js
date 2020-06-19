@@ -148,6 +148,9 @@ describe("findWinner", () => {
     test.only("Throws an error if no board passed through", () => {
         expect(() => findWinner()).toThrow("board is required");
     });
+    test.only("Throws an error if wrong format passed through", () => {
+        expect(() => findWinner("X", "0", "X")).toThrow("board needs to be an array");
+    });
     test.only("it returns X when X is the winner", () => {
         const board = [
             ["X", "0", null],
@@ -155,5 +158,21 @@ describe("findWinner", () => {
             ["X", null, "0"]
           ]
         expect(findWinner(board)).toEqual("X");
+    });
+    test.only("it returns 0 when 0 is the winner", () => {
+        const board = [
+            ["X", "X", null],
+            ["0", "0", "0"],
+            ["X", null, null]
+          ]
+        expect(findWinner(board)).toEqual("0");
+    });
+    test.only("it returns null when no current winner", () => {
+        const board = [
+            [null, "X", null],
+            ["0", null, "0"],
+            ["X", null, null]
+          ]
+        expect(findWinner(board)).toEqual(null);
     });
 });

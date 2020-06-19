@@ -114,6 +114,7 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  if (Array.isArray(board) !== true) throw new Error("board needs to be an array");
   // 8 winning combinations.
   // indexing, e.g board[0][0] = "X"
   // if statements with comparison to work out winner
