@@ -69,10 +69,6 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
-  // set empty array
-  // loop through the object and another loop through screenTime array
-  // match up the date param with the one in the array
-  // if date match && over 100 minutes, push to empty array.
   let over100 = [];
   for (let i = 0; i < users.length; i++) {
     for (let j = 0; j < users[i].screenTime.length; j++) {
@@ -118,6 +114,28 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  // 8 winning combinations.
+  // indexing, e.g board[0][0] = "X"
+  // if statements with comparison to work out winner
+  let winner = null;
+  if (board[0][0] === board[0][1] && board[0][1] === board[0][2]) {
+    winner = board[0][0];
+  } else if (board[1][0] === board[1][1] && board[1][1] === board[1][2]) {
+    winner = board[1][0];
+  } else if (board[2][0] === board[2][1] && board[2][1] === board[2][2]) {
+    winner = board[2][0];
+  } else if (board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
+    winner = board[0][0];
+  } else if (board[0][1] === board[1][1] && board[1][1] === board[2][1]) {
+    winner = board[0][1];
+  } else if (board[0][2] === board[1][2] && board[1][2] === board[2][2]) {
+    winner = board[0][2];
+  } else if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+    winner = board[0][0];
+  } else if (board[2][0] === board[1][1] && board[1][1] === board[2][0]) {
+    winner = board[2][0];
+  }
+  return winner;
 };
 
 module.exports = {

@@ -2,7 +2,8 @@ const {
     sumDigits,
     createRange,
     getScreentimeAlertList,
-    hexToRGB
+    hexToRGB,
+    findWinner
 } = require("../challenges/week10");
 
 describe("sumDigits", () => {
@@ -140,5 +141,19 @@ describe("hexToRGB", () => {
     });
     test("Case insensitive", () => {
         expect(hexToRGB("#ff1133")).toEqual("rgb(255,17,51)");
+    });
+});
+
+describe("findWinner", () => {
+    test.only("Throws an error if no board passed through", () => {
+        expect(() => findWinner()).toThrow("board is required");
+    });
+    test.only("it returns X when X is the winner", () => {
+        const board = [
+            ["X", "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+          ]
+        expect(findWinner(board)).toEqual("X");
     });
 });
